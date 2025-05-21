@@ -1,0 +1,128 @@
+<!-- 
+  Sample JetEngine Listing Template for Audio-Recording Post Type
+  This template demonstrates how to use the audio player with chunked streaming
+-->
+
+<div class="audio-recording-item">
+  <!-- Post Title -->
+  <h2>%title%</h2>
+  
+  <!-- Post Featured Image -->
+  <div class="audio-recording-thumbnail">
+    %thumbnail|size:medium%
+  </div>
+  
+  <!-- Audio Player -->
+  <div class="audio-recording-player">
+    <!-- Option 1: Using Dynamic Field with custom callback for audio player -->
+    <div class="jet-listing-dynamic-field" data-url="%meta_value|recording%" data-post-id="%current_id%" data-post-type="audio-recording">
+      <!-- The REST API Audio Player callback will replace this content -->
+      %dynamic_field|type:callback:rest_audio_player%
+    </div>
+    
+    <!-- Option 2: Using the audio player shortcode -->
+    <!-- [jetengine_audio_player id="%current_id%" post_type="audio-recording"] -->
+    
+    <!-- Option 3: Using the REST API endpoint directly -->
+    <div class="jet-audio-player" id="jet-audio-player-%current_id%">
+      <div class="jet-audio-player__waveform"></div>
+      <div class="jet-audio-player__chunk-indicator">
+        <div class="jet-audio-player__chunk-loaded"></div>
+      </div>
+      <div class="jet-audio-player__controls">
+        <button class="jet-audio-player__play-pause">
+          <span class="dashicons dashicons-controls-play"></span>
+        </button>
+        <div class="jet-audio-player__time">
+          <span class="jet-audio-player__current-time">0:00</span>
+          <span class="jet-audio-player__duration">0:00</span>
+        </div>
+      </div>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof JetEngineAudioPlayer !== 'undefined') {
+        new JetEngineAudioPlayer('jet-audio-player-%current_id%', {
+          post_id: '%current_id%',
+          post_type: 'audio-recording',
+          rest_url: '/wp-json/jetengine-audio-stream/v1/play/'
+        });
+      }
+    });
+    </script>
+  </div>
+  
+  <!-- Post Excerpt and Meta Information -->
+  <div class="audio-recording-info">
+    <div class="audio-recording-excerpt">
+      %excerpt|length:150%
+    </div>
+    
+    <div class="audio-recording-meta">
+      <span class="audio-recording-date">
+        <i class="fas fa-calendar"></i> %date|format:F j, Y%
+      </span>
+      
+      <span class="audio-recording-duration">
+        <i class="fas fa-clock"></i> %meta_value|duration%
+      </span>
+    </div>
+  </div>
+  
+  <!-- Read More Button -->
+  <div class="audio-recording-actions">
+    <a href="%permalink%" class="jet-button">Read More</a>
+  </div>
+</div>
+
+<style>
+  .audio-recording-item {
+    padding: 20px;
+    margin-bottom: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .audio-recording-item h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+  
+  .audio-recording-thumbnail {
+    margin-bottom: 15px;
+  }
+  
+  .audio-recording-player {
+    margin-bottom: 20px;
+  }
+  
+  .audio-recording-meta {
+    display: flex;
+    font-size: 14px;
+    color: #666;
+    margin: 15px 0;
+  }
+  
+  .audio-recording-meta span {
+    margin-right: 15px;
+  }
+  
+  .audio-recording-actions {
+    margin-top: 20px;
+  }
+  
+  .audio-recording-actions .jet-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0073aa;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+  
+  .audio-recording-actions .jet-button:hover {
+    background-color: #005c8a;
+  }
+</style> 

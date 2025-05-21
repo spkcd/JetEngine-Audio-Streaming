@@ -1,0 +1,213 @@
+/**
+ * JetEngine Audio Stream - Frontend Styles
+ */
+
+/* Player container */
+.jet-audio-player-container {
+    width: 100%;
+    margin: 20px 0;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Waveform container */
+.jet-audio-waveform {
+    width: 100%;
+    height: 80px;
+    background: #f8f8f8;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Native audio player (fallback) */
+.jet-audio-native-player,
+.elementor-audio-native-player {
+    width: 100%;
+    border-radius: 4px;
+    outline: none;
+    display: block;
+    margin: 10px 0;
+}
+
+/* In native player mode, adjust the container */
+.jet-audio-player-container.native-player .jet-audio-waveform,
+.audio-player.native-player .waveform {
+    height: auto !important;
+    min-height: 50px;
+    background: none;
+    box-shadow: none;
+}
+
+/* Style the wavesurfer canvas elements */
+.jet-audio-waveform canvas,
+.audio-player .waveform canvas {
+    width: 100% !important;
+    display: block;
+}
+
+/* Style WaveSurfer cursor line */
+.wavesurfer-cursor {
+    width: 2px !important;
+    background-color: #f85032 !important;
+    z-index: 10 !important;
+}
+
+/* Controls area */
+.jet-audio-controls {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* Play button */
+.jet-audio-play-button {
+    background: #4F4A85;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: background-color 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.jet-audio-play-button:hover {
+    background: #383351;
+    transform: scale(1.05);
+}
+
+.jet-audio-play-button .play-icon,
+.jet-audio-play-button .pause-icon {
+    font-size: 16px;
+    line-height: 1;
+}
+
+/* Time display */
+.jet-audio-time {
+    font-family: monospace;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Player states */
+.jet-audio-player-container.error .jet-audio-waveform {
+    border: 1px solid #d63638;
+}
+
+.audio-error {
+    color: #d63638;
+    padding: 5px 0;
+    font-size: 14px;
+}
+
+/* Elementor widget compatibility */
+.audio-player .waveform {
+    border-radius: 4px;
+    overflow: hidden;
+    height: 100px !important; /* Ensure height consistency */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    background: #f8f8f8;
+}
+
+.audio-player .play-button {
+    background: #4F4A85;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.audio-player .play-button:hover {
+    background: #383351;
+    transform: scale(1.05);
+}
+
+.audio-player .time-display {
+    font-family: monospace;
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+}
+
+/* Fix for WaveSurfer progress overlap */
+.audio-player .waveform > wave > wave,
+.jet-audio-waveform > wave > wave {
+    z-index: 2 !important;
+}
+
+.audio-player .waveform > wave,
+.jet-audio-waveform > wave {
+    z-index: 1 !important;
+}
+
+/* Loading state */
+.jet-audio-player--loading .jet-audio-player__waveform {
+    position: relative;
+}
+
+.jet-audio-player--loading .jet-audio-player__waveform:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 24px;
+    height: 24px;
+    margin-left: -12px;
+    margin-top: -12px;
+    border: 2px solid rgba(33, 150, 243, 0.3);
+    border-top-color: #2196f3;
+    border-radius: 50%;
+    animation: jet-audio-spin 1s linear infinite;
+}
+
+@keyframes jet-audio-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Error state */
+.jet-audio-player__error {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #ffebee;
+    color: #d32f2f;
+    border-radius: 4px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.jet-audio-player__error .dashicons {
+    margin-right: 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .jet-audio-waveform, 
+    .audio-player .waveform {
+        height: 60px !important;
+    }
+    
+    .jet-audio-play-button,
+    .audio-player .play-button {
+        width: 32px;
+        height: 32px;
+    }
+} 
